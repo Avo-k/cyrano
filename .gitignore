@@ -1,0 +1,14 @@
+.gitignore
+/.cache
+.env
+/.vscode
+/code
+/bing_cookies_jel.json
+/data/recording
+/main.ipynb
+__pycache__/
+/notebooks
+cyrano.tar
+google_tts_api_id.json
+src/test.py
+src/memories/memory_prompts.py

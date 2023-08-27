@@ -1,0 +1,14 @@
+python-dotenv==1.0.0
+# termcolor==2.3.0
+SpeechRecognition==3.10.0
+pyttsx3==2.90
+PyAudio==0.2.13
+pydub==0.25.1
+# elevenlabs==0.2.21
+pvporcupine==2.2.1
+simpleaudio==1.0.4
+google-cloud-texttospeech==2.14.1
+sentence-transformers==2.0.0
+chess==1.10.0
+openai
+langchain
