@@ -40,16 +40,50 @@ Long Term Memory uses a time-weighted vector store. Whenever the conversation ex
 
 At runtime, Cyrano fetches the top 5 most relevant memories and adds them to the last user message. When choosing the most relevant memories, it uses semantic similarity, weighted by the age of the memory, using the formula: ` semantic_similarity + (1 - decay_rate) ** hours_passed`. For which semantic_similarity is the cosine distance between vectors, decay_rate represents how quickly memories lose relevance, and hours_passed is the delta between the present and last_accessed_at.
 
+## Sound
+
+### Cyrano as text only
+
+you can use Cyrano as a text only agent by setting the sound variable to False in src/main.py. I you choose to do so, inputs will be python `input()` and outputs will be texts.
+
+### 1. Wake word
+
+If you choose to interact with it using voice and ear, you will need to use [porcupine](https://picovoice.ai/docs/porcupine/) for the wake word detection. For this "alexa" or "hey google" equivalent, I simply chose "Cyrano". Whenever you want to interact with the model you can say its name out loud, wait for a beep, and start talking. 
+
+NOTE: The wake word is currently set with a French accent. simply regenerate it from porcupine website in another language if needed.
+
+### 2. Speech to Text
+
+Sound is recorded using the [SpeechRecognition](https://pypi.org/project/SpeechRecognition/) library. after hearing a silence, it will stop recording and send the sound file to [OpenAI Whisper](https://openai.com/research/whisper) API which will send back the transcribed text.
+
+### 3. Text To Speech (TTS)
+
+Cyrano can use 3 TTS options:
+
+- [pyttsx3](https://pypi.org/project/pyttsx3/) which is free and have a robotic but acceptable voice on windows.
+
+- [Google cloud TTS](https://cloud.google.com/text-to-speech?hl=fr) very good quality/ price option imo. Works well on any os.
+
+- [Eleven labs](https://elevenlabs.io/) best sound quality, but the free version is limited and the paid version do not offer enough character per month.
+
+As I needed Cyrano to run on a Raspberry, wanted good quality, and high volume, so not too pricey, I chose Google TTS. I left all functions for the 3 options in src/sound_utils.py. Feel free to use the one which suits you best. for google or eleven labs, you will need to add the api key in the .env file.
+
+
 ## installation
 
 ### 1. create a .env file
 
-create a .env file with all api_key and a system prompt
+clone the repo, then create a .env file with all api_key and a system prompt containing the following:
 - example of system prompt (the identity of the model):
 
     ```SYS_PROMPT="You are Cyrano, a personal assistant with the personality of Cyrano de Bergerac. Today's date is {current_date}. You're on {user_name}'s desk. {user_description}. {user_name}'s messages are recorded in sound and then transcribed into text. It may happen that the sound is incorrectly transcribed. You regularly reply in a sarcastic and humorous manner."```
+
 - [OpenAI api key](https://platform.openai.com/docs/api-reference/authentication)
-- Google search API key
+
+- [Google search API key](https://serper.dev/)
+
+- OPTIONNAL: [Google search API key](https://serper.dev/)
+
 
 ### Use directly (recommended)
 
