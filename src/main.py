@@ -4,7 +4,7 @@ from agent_langchain import init_agent, stream_sentences
 agent = init_agent()
 reponse_directe = False
 
-sound = False
+sound = True
 
 # starting beeps (ba dum)
 make_beep(False)

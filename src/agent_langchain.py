@@ -60,7 +60,7 @@ search = GoogleSerperAPIWrapper()
 
 tools = [
     Tool(
-        name="Recherche Google",
+        name="RechercheGoogle",
         func=search.run,
         description="utile lorsque tu dois répondre à des questions sur des événements d'actualité. pose des questions ciblées.",
     ),
