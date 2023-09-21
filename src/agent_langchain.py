@@ -30,6 +30,10 @@ from tools._timer import TimerTool
 
 load_dotenv()
 
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_API_KEY"] = os.environ["LANGCHAIN_API_KEY"]
+
 # Create a Queue
 Q = Queue()
 
@@ -56,7 +60,6 @@ llm = ChatOpenAI(
     callbacks=[QueueCallback(Q)],
 )
 search = GoogleSerperAPIWrapper()
-# llm_math_chain = LLMMathChain.from_llm(llm=llm, verbose=True)
 
 tools = [
     Tool(
@@ -132,7 +135,7 @@ def init_agent():
         streaming=True,
         agent=AgentType.OPENAI_FUNCTIONS,
         verbose=False,
-        max_iterations=2,
+        max_iterations=5,
         agent_kwargs=agent_kwargs,
         memory=memory,
     )

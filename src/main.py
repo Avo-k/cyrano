@@ -1,15 +1,23 @@
+import time
+
+
+st = time.perf_counter()
+
+
 from sound_utils import listen_for_wake_word, listen, make_beep, google_tts
 from agent_langchain import init_agent, stream_sentences
+import os
+
 
 agent = init_agent()
 reponse_directe = False
 
-sound = True
+sound = False
 
 # starting beeps (ba dum)
-make_beep(False)
-make_beep()
-print("ready")
+# make_beep(False)
+# make_beep()
+print(f"ready :) started in {time.perf_counter() - st:.1f} sec")
 
 while True:
     full = ""

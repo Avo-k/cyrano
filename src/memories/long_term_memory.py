@@ -58,9 +58,8 @@ retriever.add_documents(souvenirs)
 
 # LTM = VectorStoreRetrieverMemory(retriever=retriever, memory_key="LTM")
 
+
 ###########
-
-
 class CustomMemory(BaseChatMemory):
     """short term memory with token limit + long term memory with vector store retriever."""
 

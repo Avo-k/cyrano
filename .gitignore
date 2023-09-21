@@ -12,3 +12,4 @@ cyrano.tar
 google_tts_api_id.json
 src/test.py
 src/memories/memory_prompts.py
+data/LTM/
